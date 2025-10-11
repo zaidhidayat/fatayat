@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fatayat NU Kejajar</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-mosque"></i>
+                <h1>Fatayat NU Kejajar</h1>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav" id="navigation">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="#home" class="nav-link active" data-section="home">
+                    <i class="fas fa-home"></i>
+                    <span>Beranda</span>
+                </a></li>
+                <li><a href="#sejajar" class="nav-link" data-section="sejajar">
+                    <i class="fas fa-history"></i>
+                    <span>Sejarah</span>
+                </a></li>
+                <li><a href="#donatur" class="nav-link" data-section="donatur">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <span>Data Donatur</span>
+                </a></li>
+                <li><a href="#penerima" class="nav-link" data-section="penerima">
+                    <i class="fas fa-users"></i>
+                    <span>Data Penerima</span>
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Home Section -->
+        <section class="section active" id="home">
+            <div class="container">
+                <div class="hero">
+                    <div class="hero-content">
+                        <h2>Selamat Datang di Fatayat NU Kejajar</h2>
+                        <p>Organisasi perempuan yang berkomitmen untuk memajukan pendidikan dan kesejahteraan masyarakat</p>
+                        <div class="cta-buttons">
+                            <button class="btn btn-primary" onclick="showSection('sejajar')">
+                                <i class="fas fa-book"></i>
+                                Pelajari Sejarah
+                            </button>
+                            <button class="btn btn-secondary" onclick="showSection('donatur')">
+                                <i class="fas fa-chart-bar"></i>
+                                Lihat Data
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-mosque"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Dashboard -->
+                <div class="dashboard">
+                    <h3>Dashboard Data Terkini</h3>
+                    <div class="data-cards">
+                        <div class="data-card">
+                            <div class="card-icon">
+                                <i class="fas fa-hand-holding-heart"></i>
+                            </div>
+                            <div class="card-content">
+                                <h4>Total Donatur</h4>
+                                <div class="card-value" id="totalDonatur">Loading...</div>
+                                <p>Data dari spreadsheet</p>
+                            </div>
+                        </div>
+                        <div class="data-card">
+                            <div class="card-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="card-content">
+                                <h4>Total Penerima</h4>
+                                <div class="card-value" id="totalPenerima">Loading...</div>
+                                <p>Data dari spreadsheet</p>
+                            </div>
+                        </div>
+                        <div class="data-card">
+                            <div class="card-icon">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <div class="card-content">
+                                <h4>Total Donasi</h4>
+                                <div class="card-value" id="totalDonasi">Loading...</div>
+                                <p>Data dari spreadsheet</p>
+                            </div>
+                        </div>
+                        <div class="data-card">
+                            <div class="card-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="card-content">
+                                <h4>Program Aktif</h4>
+                                <div class="card-value" id="programAktif">Loading...</div>
+                                <p>Data dari spreadsheet</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sejarah Section -->
+        <section class="section" id="sejajar">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Sejarah Fatayat NU Kejajar</h2>
+                    <p>Perjalanan panjang dalam melayani masyarakat</p>
+                </div>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>Pendirian</h3>
+                            <p>Fatayat NU Kejajar didirikan dengan misi memajukan peran perempuan dalam masyarakat.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>Pengembangan Program</h3>
+                            <p>Mengembangkan berbagai program pendidikan dan pemberdayaan masyarakat.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>Era Digital</h3>
+                            <p>Memasuki era digitalisasi untuk mempermudah pengelolaan data dan transparansi.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Donatur Section -->
+        <section class="section" id="donatur">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Data Donatur</h2>
+                    <p>Informasi para donatur yang telah berkontribusi</p>
+                </div>
+
+                <div class="data-display">
+                    <div class="spreadsheet-container">
+                        <h3>Data dari Spreadsheet</h3>
+                        <div class="spreadsheet-cells">
+                            <div class="cell-group">
+                                <label>Donatur Terbaru:</label>
+                                <div class="cell-value" id="donaturTerbaru">Loading...</div>
+                            </div>
+                            <div class="cell-group">
+                                <label>Donasi Terbesar:</label>
+                                <div class="cell-value" id="donasiTerbesar">Loading...</div>
+                            </div>
+                            <div class="cell-group">
+                                <label>Kategori Donasi:</label>
+                                <div class="cell-value" id="kategoriDonasi">Loading...</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="data-table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Donatur</th>
+                                    <th>Jumlah</th>
+                                    <th>Tanggal</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="donaturTableBody">
+                                <!-- Data will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Penerima Section -->
+        <section class="section" id="penerima">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Data Penerima</h2>
+                    <p>Informasi penerima bantuan dan program</p>
+                </div>
+
+                <div class="data-display">
+                    <div class="spreadsheet-container">
+                        <h3>Data dari Spreadsheet</h3>
+                        <div class="spreadsheet-cells">
+                            <div class="cell-group">
+                                <label>Penerima Terbaru:</label>
+                                <div class="cell-value" id="penerimaTerbaru">Loading...</div>
+                            </div>
+                            <div class="cell-group">
+                                <label>Program Aktif:</label>
+                                <div class="cell-value" id="programTerbaru">Loading...</div>
+                            </div>
+                            <div class="cell-group">
+                                <label>Wilayah Prioritas:</label>
+                                <div class="cell-value" id="wilayahPrioritas">Loading...</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="data-table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Penerima</th>
+                                    <th>Program</th>
+                                    <th>Wilayah</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="penerimaTableBody">
+                                <!-- Data will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Fatayat NU Kejajar</h3>
+                    <p>Organisasi perempuan yang berkomitmen untuk kemajuan masyarakat.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Kontak</h3>
+                    <p><i class="fas fa-phone"></i> +62 xxx-xxx-xxxx</p>
+                    <p><i class="fas fa-envelope"></i> info@fatayatnu-kejajar.org</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Media Sosial</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Fatayat NU Kejajar. Semua hak cipta dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
