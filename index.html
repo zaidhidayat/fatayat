@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pencarian Data Spreadsheet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            padding: 30px;
+        }
+
+        /* Search Page Styles */
+        .search-section {
+            text-align: center;
+        }
+
+        .file-upload {
+            margin-bottom: 30px;
+            padding: 30px;
+            border: 3px dashed #ddd;
+            border-radius: 10px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+
+        .file-upload:hover {
+            border-color: #4facfe;
+            background: #f0f8ff;
+        }
+
+        .file-upload input[type="file"] {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            background: white;
+        }
+
+        .search-form {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #4facfe;
+            box-shadow: 0 0 10px rgba(79, 172, 254, 0.3);
+        }
+
+        .btn {
+            padding: 12px 30px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(79, 172, 254, 0.3);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(168, 237, 234, 0.3);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            color: #333;
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(132, 250, 176, 0.3);
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            color: #333;
+        }
+
+        .btn-warning:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(252, 182, 159, 0.3);
+        }
+
+        /* Results Page Styles */
+        .results-container {
+            height: 80vh;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            overflow: auto;
+            background: white;
+            margin-bottom: 20px;
+        }
+
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .results-table th,
+        .results-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .results-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .results-table tr:hover {
+            background: #f8f9fa;
+            cursor: pointer;
+        }
+
+        .results-table tr.selected {
+            background: #e3f2fd;
+        }
+
+        /* Edit Page Styles */
+        .edit-form {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4facfe;
+            box-shadow: 0 0 5px rgba(79, 172, 254, 0.3);
+        }
+
+        .button-group {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Hidden class */
+        .hidden {
+            display: none;
+        }
+
+        /* Loading animation */
+        .loading {
+            text-align: center;
+            padding: 50px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #4facfe;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .search-input {
+                max-width: 100%;
+            }
+            
+            .results-table {
+                font-size: 0.8rem;
+            }
+            
+            .results-table th,
+            .results-table td {
+                padding: 8px;
+            }
+        }
+
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Pencarian Data Spreadsheet</h1>
+            <p>Upload file Excel/CSV dan cari data dengan mudah</p>
+        </div>
+
+        <div class="main-content">
+            <!-- Search Page -->
+            <div id="searchPage">
+                <div class="search-section">
+                    <div class="file-upload">
+                        <h3>📁 Upload File Spreadsheet</h3>
+                        <p>Pilih file Excel (.xlsx, .xls) atau CSV (.csv)</p>
+                        <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" />
+                        <div id="fileInfo" class="hidden"></div>
+                    </div>
+
+                    <div class="search-form">
+                        <h3>🔍 Pencarian Data</h3>
+                        <input type="text" id="searchInput" class="search-input" placeholder="Masukkan kata kunci pencarian..." />
+                        <br>
+                        <button id="searchBtn" class="btn btn-primary" disabled>Cari Data</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Page -->
+            <div id="resultsPage" class="hidden">
+                <div id="alertContainer"></div>
+                <div class="results-container">
+                    <table class="results-table">
+                        <thead id="resultsHeader"></thead>
+                        <tbody id="resultsBody"></tbody>
+                    </table>
+                </div>
+                <div class="button-group">
+                    <button id="editBtn" class="btn btn-secondary" disabled>✏️ Edit Data</button>
+                    <button id="backToSearchBtn" class="btn btn-warning">🏠 Kembali ke Pencarian</button>
+                </div>
+            </div>
+
+            <!-- Edit Page -->
+            <div id="editPage" class="hidden">
+                <div id="editAlertContainer"></div>
+                <div class="edit-form">
+                    <h3>✏️ Edit Data</h3>
+                    <form id="editForm"></form>
+                </div>
+                <div class="button-group">
+                    <button id="saveBtn" class="btn btn-success">💾 Simpan</button>
+                    <button id="backToResultsBtn" class="btn btn-secondary">↩️ Kembali ke Hasil</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include SheetJS library for Excel parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    
+    <script>
+        // Global variables
+        let spreadsheetData = [];
+        let filteredData = [];
+        let selectedRowIndex = -1;
+        let headers = [];
+
+        // DOM elements
+        const searchPage = document.getElementById('searchPage');
+        const resultsPage = document.getElementById('resultsPage');
+        const editPage = document.getElementById('editPage');
+        const fileInput = document.getElementById('fileInput');
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const editBtn = document.getElementById('editBtn');
+        const saveBtn = document.getElementById('saveBtn');
+        const backToSearchBtn = document.getElementById('backToSearchBtn');
+        const backToResultsBtn = document.getElementById('backToResultsBtn');
+        const resultsHeader = document.getElementById('resultsHeader');
+        const resultsBody = document.getElementById('resultsBody');
+        const editForm = document.getElementById('editForm');
+        const alertContainer = document.getElementById('alertContainer');
+        const editAlertContainer = document.getElementById('editAlertContainer');
+
+        // File upload handler
+        fileInput.addEventListener('change', handleFileUpload);
+        searchBtn.addEventListener('click', performSearch);
+        editBtn.addEventListener('click', showEditPage);
+        saveBtn.addEventListener('click', saveData);
+        backToSearchBtn.addEventListener('click', showSearchPage);
+        backToResultsBtn.addEventListener('click', showResultsPage);
+        
+        // Allow search on Enter key
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !searchBtn.disabled) {
+                performSearch();
+            }
+        });
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            showAlert('info', '📤 Mengupload dan memproses file...', alertContainer);
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    
+                    // Get first worksheet
+                    const firstSheetName = workbook.SheetNames[0];
+                    const worksheet = workbook.Sheets[firstSheetName];
+                    
+                    // Convert to JSON
+                    const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+                    
+                    if (jsonData.length === 0) {
+                        showAlert('error', '❌ File kosong atau tidak dapat dibaca!', alertContainer);
+                        return;
+                    }
+
+                    // Extract headers and data
+                    headers = jsonData[0] || [];
+                    spreadsheetData = jsonData.slice(1).filter(row => 
+                        row.some(cell => cell !== null && cell !== undefined && cell !== '')
+                    );
+
+                    // Show file info
+                    const fileInfo = document.getElementById('fileInfo');
+                    fileInfo.innerHTML = `
+                        <div class="alert alert-success">
+                            ✅ File berhasil diupload!<br>
+                            📊 <strong>${file.name}</strong><br>
+                            📈 ${spreadsheetData.length} baris data, ${headers.length} kolom
+                        </div>
+                    `;
+                    fileInfo.classList.remove('hidden');
+
+                    // Enable search
+                    searchBtn.disabled = false;
+                    searchInput.focus();
+
+                    showAlert('success', '✅ File berhasil diproses! Silakan lakukan pencarian.', alertContainer);
+
+                } catch (error) {
+                    console.error('Error processing file:', error);
+                    showAlert('error', '❌ Error memproses file: ' + error.message, alertContainer);
+                }
+            };
+
+            reader.readAsArrayBuffer(file);
+        }
+
+        function performSearch() {
+            const searchTerm = searchInput.value.trim().toLowerCase();
+            
+            if (!searchTerm) {
+                showAlert('error', '❌ Masukkan kata kunci pencarian!', alertContainer);
+                return;
+            }
+
+            // Clear screen and show results
+            clearAlerts();
+            showResultsPage();
+
+            // Filter data
+            filteredData = spreadsheetData.filter(row => 
+                row.some(cell => 
+                    cell && cell.toString().toLowerCase().includes(searchTerm)
+                )
+            );
+
+            displayResults();
+        }
+
+        function displayResults() {
+            // Clear previous results
+            resultsHeader.innerHTML = '';
+            resultsBody.innerHTML = '';
+
+            if (filteredData.length === 0) {
+                showAlert('info', '🔍 Tidak ada data yang ditemukan dengan kata kunci tersebut.', alertContainer);
+                resultsBody.innerHTML = '<tr><td colspan="100%" style="text-align: center; padding: 50px; color: #666;">Tidak ada hasil pencarian</td></tr>';
+                return;
+            }
+
+            // Create header
+            const headerRow = document.createElement('tr');
+            headers.forEach(header => {
+                const th = document.createElement('th');
+                th.textContent = header || 'Kolom';
+                headerRow.appendChild(th);
+            });
+            resultsHeader.appendChild(headerRow);
+
+            // Create data rows
+            filteredData.forEach((row, index) => {
+                const tr = document.createElement('tr');
+                tr.dataset.index = index;
+                
+                headers.forEach((header, colIndex) => {
+                    const td = document.createElement('td');
+                    td.textContent = row[colIndex] || '';
+                    tr.appendChild(td);
+                });
+
+                tr.addEventListener('click', () => selectRow(index, tr));
+                resultsBody.appendChild(tr);
+            });
+
+            showAlert('success', `✅ Ditemukan ${filteredData.length} hasil pencarian.`, alertContainer);
+        }
+
+        function selectRow(index, rowElement) {
+            // Remove previous selection
+            document.querySelectorAll('.results-table tr.selected').forEach(tr => {
+                tr.classList.remove('selected');
+            });
+
+            // Select current row
+            rowElement.classList.add('selected');
+            selectedRowIndex = index;
+            editBtn.disabled = false;
+        }
+
+        function showEditPage() {
+            if (selectedRowIndex === -1) {
+                showAlert('error', '❌ Pilih baris data yang ingin diedit!', alertContainer);
+                return;
+            }
+
+            clearAlerts();
+            searchPage.classList.add('hidden');
+            resultsPage.classList.add('hidden');
+            editPage.classList.remove('hidden');
+
+            // Create edit form
+            const selectedRow = filteredData[selectedRowIndex];
+            editForm.innerHTML = '';
+
+            headers.forEach((header, index) => {
+                const formGroup = document.createElement('div');
+                formGroup.className = 'form-group';
+
+                const label = document.createElement('label');
+                label.textContent = header || `Kolom ${index + 1}`;
+                
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.name = `field_${index}`;
+                input.value = selectedRow[index] || '';
+                input.required = true;
+
+                formGroup.appendChild(label);
+                formGroup.appendChild(input);
+                editForm.appendChild(formGroup);
+            });
+
+            showAlert('info', '✏️ Edit data sesuai kebutuhan, kemudian klik Simpan.', editAlertContainer);
+        }
+
+        function saveData() {
+            const formData = new FormData(editForm);
+            const updatedRow = [];
+
+            // Collect form data
+            headers.forEach((header, index) => {
+                const value = formData.get(`field_${index}`) || '';
+                updatedRow[index] = value;
+            });
+
+            // Update the data
+            const originalRowIndex = spreadsheetData.findIndex(row => 
+                JSON.stringify(row) === JSON.stringify(filteredData[selectedRowIndex])
+            );
+
+            if (originalRowIndex !== -1) {
+                spreadsheetData[originalRowIndex] = updatedRow;
+            }
+            
+            filteredData[selectedRowIndex] = updatedRow;
+
+            showAlert('success', '💾 Data berhasil disimpan!', editAlertContainer);
+            
+            // Auto return to results after 1.5 seconds
+            setTimeout(() => {
+                showResultsPage();
+                displayResults();
+                showAlert('success', '✅ Data berhasil diperbarui!', alertContainer);
+            }, 1500);
+        }
+
+        function showSearchPage() {
+            clearAlerts();
+            searchPage.classList.remove('hidden');
+            resultsPage.classList.add('hidden');
+            editPage.classList.add('hidden');
+            
+            // Reset states
+            selectedRowIndex = -1;
+            editBtn.disabled = true;
+            searchInput.value = '';
+            searchInput.focus();
+        }
+
+        function showResultsPage() {
+            clearAlerts();
+            searchPage.classList.add('hidden');
+            resultsPage.classList.remove('hidden');
+            editPage.classList.add('hidden');
+            
+            // Reset selection
+            selectedRowIndex = -1;
+            editBtn.disabled = true;
+        }
+
+        function showAlert(type, message, container) {
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.textContent = message;
+            
+            container.innerHTML = '';
+            container.appendChild(alert);
+
+            // Auto hide after 5 seconds for success messages
+            if (type === 'success' || type === 'info') {
+                setTimeout(() => {
+                    if (alert.parentNode) {
+                        alert.remove();
+                    }
+                }, 5000);
+            }
+        }
+
+        function clearAlerts() {
+            alertContainer.innerHTML = '';
+            editAlertContainer.innerHTML = '';
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            showSearchPage();
+        });
+    </script>
+</body>
+</html>
