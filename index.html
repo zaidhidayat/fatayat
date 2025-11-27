@@ -53,7 +53,7 @@
     .header-title { font-size: 15px; font-weight: 600; color:#f9fafb; }
     .header-subtitle { font-size: 11px; color: #bbf7d0; }
 
-    /* BANNER */
+    /* BANNER (card gambar – dibiarkan polos) */
     .banner {
       margin: 14px 16px 10px;
       border-radius: 18px;
@@ -64,16 +64,15 @@
     /* STATUS CARD */
     .status-card {
       margin: 0 16px 10px;
-      background: linear-gradient(135deg, #15803d, #16a34a);
       color: #fff;
       padding: 16px 18px;
       border-radius: 24px;
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 10px 24px rgba(21,128,61,0.35);
       text-align: center;
       border: 1px solid #eab308;    /* garis emas */
+      box-shadow: 0 10px 24px rgba(21,128,61,0.35);
     }
     .status-left { display: flex; flex-direction: column; gap: 6px; align-items: center; }
     .status-label { font-size: 16px; opacity: 0.95; }
@@ -127,7 +126,7 @@
       text-align: center;
     }
 
-    /* WA BUTTON */
+    /* WA BUTTON – saklar timbul dengan garis emas */
     .info-footer {
       margin-top: 0;
       display: flex;
@@ -141,20 +140,41 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 10px 20px;
-      min-width: 140px;
-      min-height: 44px;
+      padding: 10px 22px;
+      min-width: 150px;
+      min-height: 46px;
       border-radius: 999px;
-      border: none;
-      background: #22c55e;
+      border: 2px solid #eab308; /* garis emas */
+      background: linear-gradient(145deg, #22c55e, #15803d);
       color: #ffffff;
       font-size: 13px;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(34,197,94,0.35);
+      box-shadow:
+        0 4px 0 rgba(21,128,61,0.7),
+        0 8px 16px rgba(15,23,42,0.25);
       white-space: nowrap;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+      transition:
+        transform 0.08s ease,
+        box-shadow 0.08s ease,
+        background 0.15s ease;
     }
     .wa-button-icon { font-size: 16px; }
+
+    .wa-button:hover {
+      background: linear-gradient(145deg, #4ade80, #16a34a);
+      box-shadow:
+        0 5px 0 rgba(21,128,61,0.8),
+        0 10px 18px rgba(15,23,42,0.3);
+    }
+
+    .wa-button:active {
+      transform: translateY(2px);
+      box-shadow:
+        0 2px 0 rgba(21,128,61,0.7),
+        0 4px 10px rgba(15,23,42,0.25);
+    }
 
     /* PENERIMA: KATEGORI */
     .category-row {
@@ -177,7 +197,11 @@
       cursor: pointer;
       box-shadow: 0 4px 10px rgba(15,23,42,0.06);
       text-align: left;
-      transition: background-color .18s ease, box-shadow .18s ease, transform .1s ease;
+      transition:
+        background-color .18s ease,
+        box-shadow .18s ease,
+        transform .1s ease,
+        border-color .18s ease;
       background:#ffffff;
       border:1px solid #eab308;    /* garis emas */
     }
@@ -196,7 +220,7 @@
     }
     .category-text { display: flex; flex-direction: column; gap: 2px; font-size: 12px; }
     .category-label { font-weight: 500; }
-    .category-sub { font-size: 11px; color: #6b7280; }
+    .category-sub { font-size: 11px; color: #e5e7eb; }
     .category-arrow {
       width: 24px; height: 24px; border-radius: 999px;
       background: #f3f4ff; display: flex; align-items: center; justify-content: center;
@@ -210,20 +234,6 @@
       font-weight: 700;
       text-align: center;
       width: 100%;
-    }
-
-    .category-card:hover {
-      background: #dcfce7;
-      box-shadow: 0 6px 14px rgba(22,163,74,0.25);
-      transform: translateY(-1px);
-    }
-
-    .category-card.active {
-      background: #bbf7d0;
-      box-shadow: 0 0 0 2px rgba(22,163,74,0.5);
-    }
-    .category-card.active .category-arrow {
-      background: #dcfce7;
     }
 
     .table-wrapper {
@@ -280,9 +290,10 @@
     }
     .nav-item span { display: block; font-size: 18px; margin-bottom: 1px; }
 
+    /* Hover nav oranye */
     .nav-item:hover {
-      background:#dcfce7;       /* hover hijau muda */
-      color:#16a34a;
+      background:#ffedd5;       /* oranye muda */
+      color:#ea580c;
     }
 
     .nav-item.active {
@@ -298,7 +309,7 @@
       padding: 12px 12px 10px; display: flex; justify-content: space-between;
       align-items: flex-start; cursor: pointer;
       box-shadow: 0 4px 10px rgba(15,23,42,0.06); text-align: left;
-      transition: background-color .18s ease, box-shadow .18s ease, transform .1s ease;
+      transition: background-color .18s ease, box-shadow .18s ease, transform .1s ease, border-color .18s ease;
       background:#ffffff;
       border:1px solid #eab308;        /* garis emas */
     }
@@ -310,7 +321,7 @@
     }
     .summary-text { display: flex; flex-direction: column; gap: 2px; font-size: 12px; }
     .summary-label { font-weight: 500; }
-    .summary-sub { font-size: 11px; color: #6b7280; }
+    .summary-sub { font-size: 11px; color: #e5e7eb; }
     .summary-value { margin-top: 8px; font-size: 16px; font-weight: 700; line-height: 1.1; white-space: nowrap; }
     .summary-arrow {
       width: 24px; height: 24px; border-radius: 999px;
@@ -319,16 +330,6 @@
       transition: background-color .18s ease;
     }
 
-    .summary-card:hover {
-      background: #dcfce7;
-      box-shadow: 0 6px 14px rgba(22,163,74,0.25);
-      transform: translateY(-1px);
-    }
-
-    .summary-card.active {
-      background: #bbf7d0;
-      box-shadow: 0 0 0 2px rgba(22,163,74,0.5);
-    }
     .summary-card.active .summary-arrow {
       background: #dcfce7;
     }
@@ -340,21 +341,163 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
     }
+
+    /* Kampung-chip: hijau solid, teks putih + bayangan */
     .kampung-chip {
       padding: 6px 10px;
       border-radius: 999px;
-      border: 1px solid #d1d5db;
-      background: #ffffff;
+      border: 1px solid #15803d;
+      background: #15803d;
       font-size: 11px;
       cursor: pointer;
       width: 100%;
       text-align: center;
-    }
-    .kampung-chip.active {
-      background: #2563eb;
       color: #ffffff;
-      border-color: #2563eb;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+      transition:
+        background-color 0.18s ease,
+        transform 0.1s ease,
+        box-shadow 0.18s ease;
+    }
+
+    .kampung-chip:hover {
+      background: #16a34a;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(22,163,74,0.35);
+    }
+
+    .kampung-chip.active {
+      background: #15803d;
+      border-color: #eab308;
+      box-shadow: 0 0 0 2px rgba(234,179,8,0.9);
       font-weight: 500;
+    }
+
+    /* ===================== */
+    /* TEMA GRADIEN & GLOSSY */
+    /* ===================== */
+    :root {
+      --fatayat-dark: #15803d;
+      --fatayat-mid:  #16a34a;
+      --fatayat-light:#22c55e;
+    }
+
+    /* Semua card (kecuali banner/gambar) */
+    .status-card,
+    .info-card,
+    .category-card,
+    .summary-card {
+      position: relative;
+      background: linear-gradient(
+        135deg,
+        var(--fatayat-dark),
+        var(--fatayat-light),
+        var(--fatayat-dark)
+      );
+      color: #f9fafb;
+      border-color: #15803d;
+      overflow: hidden;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.45);
+    }
+
+    /* Efek glossy */
+    .status-card::before,
+    .info-card::before,
+    .category-card::before,
+    .summary-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(255,255,255,0.55), transparent 55%),
+        radial-gradient(circle at 100% 0, rgba(255,255,255,0.25), transparent 55%);
+      opacity: 0.75;
+      pointer-events: none;
+    }
+
+    /* Konten di atas efek glossy */
+    .status-card > *,
+    .info-card > *,
+    .category-card > *,
+    .summary-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Angka di status-card putih dan menonjol */
+    .status-total-amount {
+      color: #ffffff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+    }
+
+    .status-label {
+      color: #e5f9ee;
+    }
+
+    /* Teks dalam card dibuat putih supaya jelas di atas hijau */
+    .info-card strong,
+    .category-label,
+    .category-sub,
+    .summary-label,
+    .summary-sub,
+    .summary-value,
+    .category-count {
+      color: #ffffff;
+    }
+
+    .category-icon,
+    .summary-icon {
+      background: rgba(255,255,255,0.18);
+      color: #ffffff;
+    }
+
+    .category-arrow,
+    .summary-arrow {
+      background: rgba(255,255,255,0.18);
+      color: #f9fafb;
+    }
+
+    /* Hover card oranye (tanpa menghilangkan gradien) */
+    .category-card:hover,
+    .summary-card:hover,
+    .info-card:hover,
+    .status-card:hover {
+      box-shadow: 0 10px 26px rgba(234,88,12,0.6); /* oranye */
+      border-color: #f97316;
+      transform: translateY(-1px);
+    }
+
+    .category-card.active,
+    .summary-card.active {
+      box-shadow:
+        0 0 0 2px rgba(250,250,250,0.9),
+        0 0 0 4px rgba(21,128,61,0.5);
+    }
+
+    /* Data Penerima: card anak & dhuafa sejajar kanan kiri */
+    .category-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      overflow-x: visible;
+      margin-bottom: 16px;
+      padding-bottom: 4px;
+    }
+
+    .category-card {
+      flex: 1 1 calc(50% - 6px);  /* 2 kolom */
+      min-width: 0;
+    }
+
+    /* Tabel tetap putih & teks gelap supaya nyaman dibaca */
+    .table-wrapper {
+      background: #ffffff;
+      text-shadow: none;
+    }
+
+    table th,
+    table td {
+      color: #0f172a;
     }
   </style>
 </head>
@@ -507,7 +650,7 @@ semoga rejeki panjenengan bertambah melimpah dan berkah</strong>
       </div>
 
       <div class="table-wrapper">
-        <div class="table-title">Daftar Penerima</div>
+        <div class="table-title" id="penerima-table-title">Data Anak Yatim</div>
         <div id="penerima-status" class="muted">Memuat data...</div>
         <table aria-describedby="penerima-status">
           <thead id="penerima-thead"></thead>
@@ -568,7 +711,7 @@ semoga rejeki panjenengan bertambah melimpah dan berkah</strong>
       </div>
 
       <div class="table-wrapper" id="donatur-table-wrapper">
-        <div class="table-title" id="donatur-table-title">Tabel Total Donasi</div>
+        <div class="table-title" id="donatur-table-title">Total Donasi</div>
         <div id="donatur-status" class="muted">Memuat data...</div>
         <table>
           <thead id="donatur-thead"></thead>
@@ -627,6 +770,12 @@ semoga rejeki panjenengan bertambah melimpah dan berkah</strong>
   // CSV LOADER DENGAN CACHE
   // ================================
   const CACHE_MAX_AGE_MS = 10 * 60 * 1000; // 10 menit
+
+  // cache in-memory untuk percepat tampilan tabel
+  const penerimaCache = {};   // { anak: {header,data}, dhuafa: {...} }
+  const penerimaCountCache = { data: null };
+  const donaturCache = {};    // { total: {header,data}, karanganyar: {...}, ... }
+  let totalDonasiCardCache = null;
 
   function parseCSV(text) {
     const rows = text
@@ -732,6 +881,7 @@ semoga rejeki panjenengan bertambah melimpah dan berkah</strong>
   const statusEl = document.getElementById('penerima-status');
   const countAnakEl = document.getElementById('count-anak');
   const countDhuafaEl = document.getElementById('count-dhuafa');
+  const penerimaTitle = document.getElementById('penerima-table-title');
   let currentPenerimaType = 'anak';
 
   function renderPenerimaTable(headerRow, rows) {
@@ -767,10 +917,25 @@ semoga rejeki panjenengan bertambah melimpah dan berkah</strong>
     });
   }
 
-  async function loadCategory(type, { useCache = false } = {}) {
+  async function loadCategory(type, { useCache = false, showLoading = true } = {}) {
     currentPenerimaType = type;
-    try {
+
+    // set judul tabel sesuai kartu
+    if (penerimaTitle) {
+      penerimaTitle.textContent = type === 'anak' ? 'Data Anak Yatim' : 'Data Dhuafa';
+    }
+
+    const cacheKeyMem = type;
+
+    // tampilkan dari cache in-memory dulu jika ada (supaya cepat)
+    if (penerimaCache[cacheKeyMem]) {
+      renderPenerimaTable(penerimaCache[cacheKeyMem].header, penerimaCache[cacheKeyMem].data);
+      statusEl.textContent = '';
+    } else if (showLoading) {
       statusEl.textContent = 'Memuat data...';
+    }
+
+    try {
       let result;
       if (type === 'anak') {
         result = await loadCSV(
@@ -785,21 +950,34 @@ semoga rejeki panjenengan bertambah melimpah dan berkah</strong>
           useCache ? CACHE_MAX_AGE_MS : 0
         );
       }
+      penerimaCache[cacheKeyMem] = result;
       renderPenerimaTable(result.header, result.data);
       statusEl.textContent = '';
     } catch (err) {
-      statusEl.textContent =
-        'Gagal memuat data. Coba refresh halaman. (' + err.message + ')';
+      if (!penerimaCache[cacheKeyMem]) {
+        statusEl.textContent =
+          'Gagal memuat data. Coba refresh halaman. (' + err.message + ')';
+      }
     }
   }
 
-  async function loadPenerimaCounts({ useCache = false } = {}) {
+  async function loadPenerimaCounts({ useCache = false, silent = false } = {}) {
     try {
+      if (penerimaCountCache.data && silent) {
+        const data = penerimaCountCache.data;
+        const a3 = data[1]?.[0] ? data[1][0].trim() : '';
+        const a4 = data[2]?.[0] ? data[2][0].trim() : '';
+        if (countAnakEl) countAnakEl.textContent = a3 || '-';
+        if (countDhuafaEl) countDhuafaEl.textContent = a4 || '-';
+        return;
+      }
+
       const { data } = await loadCSV(
         URL_PENERIMA_COUNT,
         useCache ? 'cache_penerima_count' : null,
         useCache ? CACHE_MAX_AGE_MS : 0
       );
+      penerimaCountCache.data = data;
 
       const a3 = data[1]?.[0] ? data[1][0].trim() : '';
       const a4 = data[2]?.[0] ? data[2][0].trim() : '';
@@ -808,8 +986,10 @@ semoga rejeki panjenengan bertambah melimpah dan berkah</strong>
       if (countDhuafaEl) countDhuafaEl.textContent = a4 || '-';
     } catch (err) {
       console.error('Gagal load jumlah penerima:', err);
-      if (countAnakEl) countAnakEl.textContent = '-';
-      if (countDhuafaEl) countDhuafaEl.textContent = '-';
+      if (!penerimaCountCache.data) {
+        if (countAnakEl) countAnakEl.textContent = '-';
+        if (countDhuafaEl) countDhuafaEl.textContent = '-';
+      }
     }
   }
 
@@ -819,7 +999,8 @@ semoga rejeki panjenengan bertambah melimpah dan berkah</strong>
         .querySelectorAll('.category-card')
         .forEach(c => c.classList.remove('active'));
       card.classList.add('active');
-      loadCategory(card.dataset.filter);
+      // gunakan cache untuk percepat tampilan
+      loadCategory(card.dataset.filter, { useCache: true, showLoading: false });
     });
   });
 
@@ -901,14 +1082,30 @@ semoga rejeki panjenengan bertambah melimpah dan berkah</strong>
     });
   }
 
-  async function loadDonatur(typeKey, { useCache = false } = {}) {
+  async function loadDonatur(typeKey, { useCache = false, showLoading = true } = {}) {
     const key = typeKey.toLowerCase();
     currentDonaturKey = key;
     const url = DONATUR_URLS[key];
     if (!url) return;
 
-    try {
+    // set judul tabel sesuai sumber
+    if (donaturTitle) {
+      if (key === 'total') {
+        donaturTitle.textContent = 'Total Donasi';
+      } else {
+        donaturTitle.textContent = key.charAt(0).toUpperCase() + key.slice(1);
+      }
+    }
+
+    // tampilkan dari cache in-memory dulu kalau ada
+    if (donaturCache[key]) {
+      renderDonaturTable(donaturCache[key].header, donaturCache[key].data, key);
+      donaturStatus.textContent = '';
+    } else if (showLoading) {
       donaturStatus.textContent = 'Memuat data...';
+    }
+
+    try {
       const cacheKey =
         useCache && key === 'total'
           ? 'cache_donatur_total'
@@ -922,21 +1119,26 @@ semoga rejeki panjenengan bertambah melimpah dan berkah</strong>
         cacheKey ? CACHE_MAX_AGE_MS : 0
       );
 
+      donaturCache[key] = { header, data };
       renderDonaturTable(header, data, key);
-      donaturTitle.textContent =
-        key === 'total'
-          ? 'Tabel Total Donasi'
-          : 'Kampung ' + key.charAt(0).toUpperCase() + key.slice(1);
-
       donaturStatus.textContent = '';
     } catch (err) {
-      donaturStatus.textContent =
-        'Gagal memuat data donatur. (' + err.message + ')';
+      if (!donaturCache[key]) {
+        donaturStatus.textContent =
+          'Gagal memuat data donatur. (' + err.message + ')';
+      }
     }
   }
 
-  async function loadTotalDonasiCard({ useCache = false } = {}) {
+  async function loadTotalDonasiCard({ useCache = false, silent = false } = {}) {
     try {
+      if (totalDonasiCardCache && silent) {
+        const displayValue = totalDonasiCardCache;
+        totalDonasiEl.textContent = displayValue;
+        homeTotalDonasiEl.textContent = displayValue;
+        return;
+      }
+
       const { data } = await loadCSV(
         URL_TOTAL_CARD,
         useCache ? 'cache_total_card' : null,
@@ -945,11 +1147,14 @@ semoga rejeki panjenengan bertambah melimpah dan berkah</strong>
       const row = data[4] || [];
       const value = row[2];
       const displayValue = value && value !== '' ? value : '-';
+      totalDonasiCardCache = displayValue;
       totalDonasiEl.textContent = displayValue;
       homeTotalDonasiEl.textContent = displayValue;
     } catch (err) {
-      totalDonasiEl.textContent = '-';
-      homeTotalDonasiEl.textContent = '-';
+      if (!totalDonasiCardCache) {
+        totalDonasiEl.textContent = '-';
+        homeTotalDonasiEl.textContent = '-';
+      }
     }
   }
 
@@ -972,7 +1177,7 @@ semoga rejeki panjenengan bertambah melimpah dan berkah</strong>
           .forEach(c => c.classList.remove('active'));
       }
       setActiveSummary(btnTotalDonasi);
-      loadDonatur('total');
+      loadDonatur('total', { useCache: true, showLoading: false });
       donaturTableWrapper.scrollIntoView({ behavior: 'smooth' });
     });
   }
@@ -981,37 +1186,46 @@ semoga rejeki panjenengan bertambah melimpah dan berkah</strong>
       kampungMenu.classList.toggle('active');
       setActiveSummary(btnDonasiKampung);
     });
+
+    // Setelah chip diklik, menu kampung disembunyikan dan judul tabel sesuai nama kampung
     kampungMenu.addEventListener('click', e => {
       if (!e.target.classList.contains('kampung-chip')) return;
+
       kampungMenu
         .querySelectorAll('.kampung-chip')
         .forEach(chip => chip.classList.remove('active'));
       e.target.classList.add('active');
+
       setActiveSummary(btnDonasiKampung);
-      loadDonatur(e.target.dataset.kampung);
+      const kampungKey = e.target.dataset.kampung;
+      loadDonatur(kampungKey, { useCache: true, showLoading: false });
+
       donaturTableWrapper.scrollIntoView({ behavior: 'smooth' });
+
+      // Sembunyikan menu setelah dipilih
+      kampungMenu.classList.remove('active');
     });
   }
 
   // ================================
   // INITIAL LOAD (PAKAI CACHE)
   // ================================
-  loadCategory('anak', { useCache: true });
-  loadPenerimaCounts({ useCache: true });
-  loadDonatur('total', { useCache: true });
-  loadTotalDonasiCard({ useCache: true });
+  loadCategory('anak', { useCache: true, showLoading: true });
+  loadPenerimaCounts({ useCache: true, silent: false });
+  loadDonatur('total', { useCache: true, showLoading: true });
+  loadTotalDonasiCard({ useCache: true, silent: false });
   setActiveSummary(btnTotalDonasi);
 
   // ================================
-  // AUTO REFRESH 5 DETIK
+  // AUTO REFRESH 30 DETIK (SILENT, PAKAI CACHE)
   // ================================
   setInterval(() => {
-    loadCategory(currentPenerimaType);
-    loadPenerimaCounts();
-    loadDonatur(currentDonaturKey);
-    loadTotalDonasiCard();
+    loadCategory(currentPenerimaType, { useCache: false, showLoading: false });
+    loadPenerimaCounts({ useCache: false, silent: true });
+    loadDonatur(currentDonaturKey, { useCache: false, showLoading: false });
+    loadTotalDonasiCard({ useCache: false, silent: true });
   }, 30000);
 </script>
 
 </body>
-</html>
+  </html>
