@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>santunan th2026</title>
+
+  <link rel="icon" type="image/png" href="https://iili.io/FqYzOKB.png">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f4f7fb;
+    }
+
+    .app {
+      max-width: 430px;
+      margin: 0 auto;
+      background: #f9fbff;
+      min-height: 100vh;
+      padding-bottom: 80px;
+    }
+
+    /* HEADER */
+    .app-header {
+      display: flex;
+      align-items: center;
+      padding: 10px 16px;
+      background: #15803d;          /* hijau fatayat */
+      border-bottom: 1px solid #14532d;
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      color: #ecfdf5;
+    }
+
+    .logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: #ecfdf5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-right: 10px;
+      border: 2px solid #eab308; /* lingkaran emas kecil */
+    }
+
+    .header-text { display: flex; flex-direction: column; }
+    .header-title { font-size: 15px; font-weight: 600; color:#f9fafb; }
+    .header-subtitle { font-size: 11px; color: #bbf7d0; }
+
+    /* BANNER */
+    .banner {
+      margin: 14px 16px 10px;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+    .banner img { width: 100%; display: block; border-radius: 18px; }
+
+    /* STATUS CARD */
+    .status-card {
+      margin: 0 16px 10px;
+      background: linear-gradient(135deg, #15803d, #16a34a);
+      color: #fff;
+      padding: 16px 18px;
+      border-radius: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 10px 24px rgba(21,128,61,0.35);
+      text-align: center;
+      border: 1px solid #eab308;    /* garis emas */
+    }
+    .status-left { display: flex; flex-direction: column; gap: 6px; align-items: center; }
+    .status-label { font-size: 16px; opacity: 0.95; }
+    .status-total-amount { font-size: 26px; font-weight: 900; }
+
+    /* GENERIC CONTENT */
+    .page-content { padding: 16px; }
+
+    .page-heading {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+
+    .page-subtext {
+      font-size: 12px;
+      color: #6b7280;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    /* KARTU INFO */
+    .info-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 14px 16px;
+      box-shadow: 0 4px 10px rgba(15,23,42,0.06);
+      margin-bottom: 12px;
+      font-size: 13px;
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+
+      border: 1px solid #eab308;  /* garis emas */
+    }
+    .info-card strong { font-size: 14px; line-height: 1.3; }
+
+    .info-card-home {
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      text-align: center;
+    }
+    .info-blessing {
+      font-size: 12px;
+      color: #6b7280;
+      text-align: center;
+    }
+
+    /* WA BUTTON */
+    .info-footer {
+      margin-top: 0;
+      display: flex;
+      justify-content: flex-end;
+      flex: 0 0 auto;
+      align-items: center;
+    }
+
+    .wa-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 20px;
+      min-width: 140px;
+      min-height: 44px;
+      border-radius: 999px;
+      border: none;
+      background: #22c55e;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(34,197,94,0.35);
+      white-space: nowrap;
+    }
+    .wa-button-icon { font-size: 16px; }
+
+    /* PENERIMA: KATEGORI */
+    .category-row {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      margin-bottom: 16px;
+      padding-bottom: 4px;
+    }
+    .category-row::-webkit-scrollbar { display: none; }
+
+    .category-card {
+      flex: 1;
+      min-width: 180px;
+      border-radius: 18px;
+      padding: 12px 12px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(15,23,42,0.06);
+      text-align: left;
+      transition: background-color .18s ease, box-shadow .18s ease, transform .1s ease;
+      background:#ffffff;
+      border:1px solid #eab308;    /* garis emas */
+    }
+
+    .category-card > div:first-child {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .category-left { display: flex; gap: 8px; }
+    .category-icon {
+      width: 32px; height: 32px; border-radius: 999px;
+      background: #e0edff; display: flex; align-items: center; justify-content: center;
+      font-size: 16px; color: #2563eb;
+    }
+    .category-text { display: flex; flex-direction: column; gap: 2px; font-size: 12px; }
+    .category-label { font-weight: 500; }
+    .category-sub { font-size: 11px; color: #6b7280; }
+    .category-arrow {
+      width: 24px; height: 24px; border-radius: 999px;
+      background: #f3f4ff; display: flex; align-items: center; justify-content: center;
+      font-size: 13px; color: #2563eb; margin-left: 6px; margin-top: 2px;
+      transition: background-color .18s ease;
+    }
+
+    .category-count {
+      margin-top: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      text-align: center;
+      width: 100%;
+    }
+
+    .category-card:hover {
+      background: #dcfce7;
+      box-shadow: 0 6px 14px rgba(22,163,74,0.25);
+      transform: translateY(-1px);
+    }
+
+    .category-card.active {
+      background: #bbf7d0;
+      box-shadow: 0 0 0 2px rgba(22,163,74,0.5);
+    }
+    .category-card.active .category-arrow {
+      background: #dcfce7;
+    }
+
+    .table-wrapper {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(15,23,42,0.06);
+      overflow-x: auto;
+      padding: 10px;
+      margin-top: 10px;
+      border:1px solid #eab308;      /* garis emas */
+    }
+    .table-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    th, td {
+      padding: 6px 8px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+    }
+    th { background: #f1f5f9; font-weight: 600; }
+    tr:last-child td { border-bottom: none; }
+    .muted { font-size: 12px; color: #6b7280; padding: 4px 0; }
+
+    /* SCREEN VISIBILITY */
+    .screen { display: none; }
+    .screen.active { display: block; }
+
+    /* BOTTOM NAV */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 430px;
+      background: #ffffff;
+      border-top: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-around;
+      padding: 6px 0 8px;
+      z-index: 10;
+    }
+    .nav-item {
+      text-align: center;
+      font-size: 11px;
+      color: #6b7280;
+      text-decoration: none;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 4px 10px;
+      border-radius: 999px;
+      transition: background-color .18s ease, color .18s ease;
+    }
+    .nav-item span { display: block; font-size: 18px; margin-bottom: 1px; }
+
+    .nav-item:hover {
+      background:#dcfce7;       /* hover hijau muda */
+      color:#16a34a;
+    }
+
+    .nav-item.active {
+      color: #16a34a;
+      font-weight: 600;
+      background:#bbf7d0;       /* tab aktif hijau */
+    }
+
+    /* DONATUR SUMMARY */
+    .summary-row { display: flex; gap: 12px; margin-bottom: 12px; }
+    .summary-card {
+      flex: 1; border-radius: 18px;
+      padding: 12px 12px 10px; display: flex; justify-content: space-between;
+      align-items: flex-start; cursor: pointer;
+      box-shadow: 0 4px 10px rgba(15,23,42,0.06); text-align: left;
+      transition: background-color .18s ease, box-shadow .18s ease, transform .1s ease;
+      background:#ffffff;
+      border:1px solid #eab308;        /* garis emas */
+    }
+    .summary-header { display: flex; gap: 8px; }
+    .summary-icon {
+      width: 32px; height: 32px; border-radius: 999px;
+      background: #e0edff; display: flex; align-items: center; justify-content: center;
+      font-size: 16px; color: #2563eb;
+    }
+    .summary-text { display: flex; flex-direction: column; gap: 2px; font-size: 12px; }
+    .summary-label { font-weight: 500; }
+    .summary-sub { font-size: 11px; color: #6b7280; }
+    .summary-value { margin-top: 8px; font-size: 16px; font-weight: 700; line-height: 1.1; white-space: nowrap; }
+    .summary-arrow {
+      width: 24px; height: 24px; border-radius: 999px;
+      background: #f3f4ff; display: flex; align-items: center; justify-content: center;
+      font-size: 13px; color: #2563eb; margin-left: 6px; margin-top: 2px;
+      transition: background-color .18s ease;
+    }
+
+    .summary-card:hover {
+      background: #dcfce7;
+      box-shadow: 0 6px 14px rgba(22,163,74,0.25);
+      transform: translateY(-1px);
+    }
+
+    .summary-card.active {
+      background: #bbf7d0;
+      box-shadow: 0 0 0 2px rgba(22,163,74,0.5);
+    }
+    .summary-card.active .summary-arrow {
+      background: #dcfce7;
+    }
+
+    /* MENU KAMPUNG */
+    .kampung-menu { display: none; margin-bottom: 16px; }
+    .kampung-menu.active {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .kampung-chip {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      font-size: 11px;
+      cursor: pointer;
+      width: 100%;
+      text-align: center;
+    }
+    .kampung-chip.active {
+      background: #2563eb;
+      color: #ffffff;
+      border-color: #2563eb;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+<div class="app">
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="logo" aria-label="Logo Fatayat NU">
+      <img src="https://iili.io/FqYzOKB.png"
+           alt="Logo Fatayat NU"
+           style="width:100%;height:100%;object-fit:cover;border-radius:999px;">
+    </div>
+    <div class="header-text">
+      <div class="header-title">Fatayat NU Ranting Kelurahan Kejajar<br>Santunan Anak Yatim dan Dhuafa tahun 2026</div>
+      <div class="header-subtitle" id="header-subtitle">Beranda</div>
+    </div>
+  </header>
+
+  <!-- BERANDA -->
+  <section id="screen-home" class="screen active">
+    <section class="banner">
+      <img src="https://od.lk/s/NDZfODkxNTE5MzJf/20251127_104302.png"
+           alt="Hadits keutamaan menyantuni anak yatim">
+    </section>
+
+    <section class="status-card" aria-label="Total Donasi">
+      <div class="status-left">
+        <span class="status-label">Donasi sampai saat ini</span>
+        <div id="home-total-donasi" class="status-total-amount">-</div>
+      </div>
+    </section>
+
+    <div class="page-content">
+      <div class="page-heading">Keutamaan menyantuni anak yatim</div>
+
+      <p class="page-subtext">
+        <strong>Kedekatan dengan Rasulullah di surga:</strong>
+        Janji untuk mendapatkan kedudukan yang dekat dengan Rasulullah SAW di surga adalah pahala terbesar bagi orang yang mengasuh anak yatim.
+      </p>
+      <p class="page-subtext">
+        <strong>Melembutkan hati:</strong>
+        Mengurus anak yatim dapat menjadi terapi untuk melembutkan hati yang keras.
+      </p>
+      <p class="page-subtext">
+        <strong>Menghindari siksa akhirat:</strong>
+        Orang yang menyayangi dan berbuat baik kepada anak yatim akan terhindar dari siksa di hari kiamat.
+      </p>
+
+      <div class="info-card info-card-home">
+        <strong>Terimakasih<br>
+Dengan berkonstribusi dan donasi,<br>
+semoga rejeki panjenengan bertambah melimpah dan berkah</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO DONASI -->
+  <section id="screen-info" class="screen">
+    <div class="page-content">
+      <div class="page-heading">Informasi Donasi</div>
+      <div class="page-subtext">
+        Silahkan Whatsapp ke Panitia untuk informasi detailnya
+      </div>
+
+      <div class="info-card">
+        <strong>Ketua<br>M Hidayat</strong>
+        <div class="info-footer">
+          <button type="button" class="wa-button" data-wa-number="6285227108799">
+            <span class="wa-button-icon">🟢</span>WhatsApp
+          </button>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <strong>Sekretaris<br>Winarti</strong>
+        <div class="info-footer">
+          <button type="button" class="wa-button" data-wa-number="6285227161920">
+            <span class="wa-button-icon">🟢</span>WhatsApp
+          </button>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <strong>Bendahara<br>Istiqomah</strong>
+        <div class="info-footer">
+          <button type="button" class="wa-button" data-wa-number="6285227123456">
+            <span class="wa-button-icon">🟢</span>WhatsApp
+          </button>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <div class="table-title">Koordinator</div>
+        <table>
+          <thead>
+            <tr><th>Kampung</th><th></th><th></th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Karanganyar</td><td>Sahabat</td><td>Sahabat</td></tr>
+            <tr><td>Purwosari</td><td>Sahabat</td><td>Sahabat</td></tr>
+            <tr><td>Sidoharjo</td><td>Sahabat</td><td>Sahabat</td></tr>
+            <tr><td>Tuksari</td><td>Sahabat</td><td>Sahabat</td></tr>
+            <tr><td>Sumbersari</td><td>Sahabat</td><td>Sahabat</td></tr>
+            <tr><td>Kauman</td><td>Sahabat</td><td>Sahabat</td></tr>
+            <tr><td>Ngadisari</td><td>Sahabat</td><td>Sahabat</td></tr>
+            <tr><td>Wonosari</td><td>Sahabat</td><td>Sahabat</td></tr>
+            <tr><td>Tegalarum</td><td>Sahabat</td><td>Sahabat</td></tr>
+            <tr><td>Mulyosari</td><td>Sahabat</td><td>Sahabat</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- PENERIMA -->
+  <section id="screen-penerima" class="screen">
+    <div class="page-content">
+      <div class="page-heading">Data Penerima santunan</div>
+      <div class="page-subtext">Pilih kategori penerima, lalu lihat detail pada tabel.</div>
+
+      <div class="category-row" aria-label="Kategori Penerima">
+        <button class="category-card active" data-filter="anak" type="button">
+          <div>
+            <div class="category-left">
+              <div class="category-icon" aria-hidden="true">🌐</div>
+              <div class="category-text">
+                <div class="category-label">Anak Yatim</div>
+                <div class="category-sub">Penerima santunan</div>
+              </div>
+            </div>
+            <div class="category-count" id="count-anak">-</div>
+          </div>
+          <div class="category-arrow" aria-hidden="true">›</div>
+        </button>
+
+        <button class="category-card" data-filter="dhuafa" type="button">
+          <div>
+            <div class="category-left">
+              <div class="category-icon" aria-hidden="true">🎁</div>
+              <div class="category-text">
+                <div class="category-label">Dhuafa</div>
+                <div class="category-sub">Santunan sembako & tunai</div>
+              </div>
+            </div>
+            <div class="category-count" id="count-dhuafa">-</div>
+          </div>
+          <div class="category-arrow" aria-hidden="true">›</div>
+        </button>
+      </div>
+
+      <div class="table-wrapper">
+        <div class="table-title">Daftar Penerima</div>
+        <div id="penerima-status" class="muted">Memuat data...</div>
+        <table aria-describedby="penerima-status">
+          <thead id="penerima-thead"></thead>
+          <tbody id="penerima-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- DONATUR -->
+  <section id="screen-donatur" class="screen">
+    <div class="page-content">
+      <div class="page-heading">Data Donatur</div>
+      <div class="page-subtext">Terima kasih kepada para donatur yang telah berkontribusi.</div>
+
+      <div class="summary-row">
+        <button class="summary-card" type="button" id="btn-total-donasi">
+          <div>
+            <div class="summary-header">
+              <div class="summary-icon" aria-hidden="true">🌐</div>
+              <div class="summary-text">
+                <div class="summary-label">Total Donasi</div>
+                <div class="summary-sub">Akumulasi perkampung</div>
+              </div>
+            </div>
+            <div class="summary-value" id="total-donasi-value">-</div>
+          </div>
+          <div class="summary-arrow" aria-hidden="true">›</div>
+        </button>
+
+        <button class="summary-card" type="button" id="btn-donasi-kampung">
+          <div>
+            <div class="summary-header">
+              <div class="summary-icon" aria-hidden="true">🎁</div>
+              <div class="summary-text">
+                <div class="summary-label">Donasi per Kampung</div>
+                <div class="summary-sub">Pilih kampung di bawah</div>
+              </div>
+            </div>
+            <div class="summary-value" id="donasi-kampung-value"></div>
+          </div>
+          <div class="summary-arrow" aria-hidden="true">›</div>
+        </button>
+      </div>
+
+      <div id="kampung-menu" class="kampung-menu">
+        <button type="button" class="kampung-chip" data-kampung="karanganyar">Karanganyar</button>
+        <button type="button" class="kampung-chip" data-kampung="purwosari">Purwosari</button>
+        <button type="button" class="kampung-chip" data-kampung="sidoharjo">Sidoharjo</button>
+        <button type="button" class="kampung-chip" data-kampung="tuksari">Tuksari</button>
+        <button type="button" class="kampung-chip" data-kampung="sumbersari">Sumbersari</button>
+        <button type="button" class="kampung-chip" data-kampung="kauman">Kauman</button>
+        <button type="button" class="kampung-chip" data-kampung="ngadisari">Ngadisari</button>
+        <button type="button" class="kampung-chip" data-kampung="wonosari">Wonosari</button>
+        <button type="button" class="kampung-chip" data-kampung="tegalarum">Tegalarum</button>
+        <button type="button" class="kampung-chip" data-kampung="mulyosari">Mulyosari</button>
+        <button type="button" class="kampung-chip" data-kampung="campuran">Campuran</button>
+      </div>
+
+      <div class="table-wrapper" id="donatur-table-wrapper">
+        <div class="table-title" id="donatur-table-title">Tabel Total Donasi</div>
+        <div id="donatur-status" class="muted">Memuat data...</div>
+        <table>
+          <thead id="donatur-thead"></thead>
+          <tbody id="donatur-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav" aria-label="Menu utama">
+  <button class="nav-item active" data-target="home" type="button">
+    <span aria-hidden="true">🏠</span>Home
+  </button>
+  <button class="nav-item" data-target="info" type="button">
+    <span aria-hidden="true">ℹ️</span>Info
+  </button>
+  <button class="nav-item" data-target="penerima" type="button">
+    <span aria-hidden="true">📥</span>Penerima
+  </button>
+  <button class="nav-item" data-target="donatur" type="button">
+    <span aria-hidden="true">🤝</span>Donatur
+  </button>
+</nav>
+
+<script>
+  /* SPA NAV */
+  const navItems = document.querySelectorAll('.nav-item');
+  const screens = {
+    home: document.getElementById('screen-home'),
+    info: document.getElementById('screen-info'),
+    penerima: document.getElementById('screen-penerima'),
+    donatur: document.getElementById('screen-donatur')
+  };
+  const headerSubtitle = document.getElementById('header-subtitle');
+  const subtitles = {
+    home: 'Beranda',
+    info: 'Informasi Donasi',
+    penerima: 'Penerima Santunan',
+    donatur: 'Donatur'
+  };
+  navItems.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.getAttribute('data-target');
+      navItems.forEach(n => n.classList.remove('active'));
+      btn.classList.add('active');
+      Object.keys(screens).forEach(key => {
+        screens[key].classList.toggle('active', key === target);
+      });
+      headerSubtitle.textContent = subtitles[target] || '';
+    });
+  });
+
+  // ================================
+  // CSV LOADER DENGAN CACHE
+  // ================================
+  const CACHE_MAX_AGE_MS = 10 * 60 * 1000; // 10 menit
+
+  function parseCSV(text) {
+    const rows = text
+      .trim()
+      .split(/\r?\n/)
+      .map(line => {
+        const cols = [];
+        let current = '';
+        let inQuotes = false;
+
+        for (let i = 0; i < line.length; i++) {
+          const char = line[i];
+
+          if (char === '"' && line[i + 1] === '"') {
+            current += '"';
+            i++;
+          } else if (char === '"') {
+            inQuotes = !inQuotes;
+          } else if (char === ',' && !inQuotes) {
+            cols.push(current);
+            current = '';
+          } else {
+            current += char;
+          }
+        }
+        cols.push(current);
+        return cols.map(c => c.trim());
+      });
+
+    const header = rows.shift() || [];
+    return { header, data: rows };
+  }
+
+  async function loadCSV(url, cacheKey = null, maxAgeMs = 0) {
+    const now = Date.now();
+
+    if (cacheKey && maxAgeMs > 0 && typeof localStorage !== 'undefined') {
+      try {
+        const raw = localStorage.getItem(cacheKey);
+        if (raw) {
+          const saved = JSON.parse(raw);
+          if (saved && saved.ts && saved.text && now - saved.ts < maxAgeMs) {
+            return parseCSV(saved.text);
+          }
+        }
+      } catch (e) {
+        // abaikan error cache
+      }
+    }
+
+    const response = await fetch(url, { cache: 'no-store' });
+    if (!response.ok) throw new Error('Jaringan bermasalah (' + response.status + ')');
+    const text = await response.text();
+
+    if (cacheKey && typeof localStorage !== 'undefined') {
+      try {
+        localStorage.setItem(cacheKey, JSON.stringify({ ts: now, text }));
+      } catch (e) {
+        // abaikan jika storage penuh
+      }
+    }
+
+    return parseCSV(text);
+  }
+
+  // ================================
+  // WA BUTTONS
+  // ================================
+  function getGreeting() {
+    const hour = new Date().getHours();
+    if (hour < 11) return 'selamat pagi';
+    if (hour < 15) return 'selamat siang';
+    if (hour < 18) return 'selamat sore';
+    return 'selamat malam';
+  }
+  const waButtons = document.querySelectorAll('.wa-button[data-wa-number]');
+  waButtons.forEach(btn => {
+    const number = btn.dataset.waNumber;
+    if (!number) return;
+    btn.addEventListener('click', () => {
+      const text =
+        getGreeting() +
+        ', saya berminat untuk beramal pada acara ini. bagaimana cara untuk mengirim donasi?';
+      const url =
+        'https://wa.me/' + number + '?text=' + encodeURIComponent(text);
+      window.open(url, '_blank');
+    });
+  });
+
+  // ================================
+  // PENERIMA
+  // ================================
+  const URL_ANAK =
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vT68E8z9NFw9hnDsqp9Fxg3ohhsFGe_N0nSdKtOx3Ba9MImxdCW7QollX3d4UBDQA/pub?gid=819752507&single=true&output=csv';
+  const URL_DHUAFA =
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vT68E8z9NFw9hnDsqp9Fxg3ohhsFGe_N0nSdKtOx3Ba9MImxdCW7QollX3d4UBDQA/pub?gid=320323547&single=true&output=csv';
+
+  const URL_PENERIMA_COUNT =
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=2136758520&single=true&output=csv';
+
+  const thead = document.getElementById('penerima-thead');
+  const tbody = document.getElementById('penerima-tbody');
+  const statusEl = document.getElementById('penerima-status');
+  const countAnakEl = document.getElementById('count-anak');
+  const countDhuafaEl = document.getElementById('count-dhuafa');
+  let currentPenerimaType = 'anak';
+
+  function renderPenerimaTable(headerRow, rows) {
+    thead.innerHTML = '';
+    const trHead = document.createElement('tr');
+    headerRow.forEach(text => {
+      const th = document.createElement('th');
+      th.textContent = text;
+      trHead.appendChild(th);
+    });
+    thead.appendChild(trHead);
+
+    tbody.innerHTML = '';
+    const dataRows = rows;
+
+    if (!dataRows.length) {
+      const tr = document.createElement('tr');
+      const td = document.createElement('td');
+      td.colSpan = headerRow.length || 1;
+      td.textContent = 'Belum ada data.';
+      tr.appendChild(td);
+      tbody.appendChild(tr);
+      return;
+    }
+    dataRows.forEach(row => {
+      const tr = document.createElement('tr');
+      headerRow.forEach((_, idx) => {
+        const td = document.createElement('td');
+        td.textContent = row[idx] ?? '';
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+  }
+
+  async function loadCategory(type, { useCache = false } = {}) {
+    currentPenerimaType = type;
+    try {
+      statusEl.textContent = 'Memuat data...';
+      let result;
+      if (type === 'anak') {
+        result = await loadCSV(
+          URL_ANAK,
+          useCache ? 'cache_penerima_anak' : null,
+          useCache ? CACHE_MAX_AGE_MS : 0
+        );
+      } else {
+        result = await loadCSV(
+          URL_DHUAFA,
+          useCache ? 'cache_penerima_dhuafa' : null,
+          useCache ? CACHE_MAX_AGE_MS : 0
+        );
+      }
+      renderPenerimaTable(result.header, result.data);
+      statusEl.textContent = '';
+    } catch (err) {
+      statusEl.textContent =
+        'Gagal memuat data. Coba refresh halaman. (' + err.message + ')';
+    }
+  }
+
+  async function loadPenerimaCounts({ useCache = false } = {}) {
+    try {
+      const { data } = await loadCSV(
+        URL_PENERIMA_COUNT,
+        useCache ? 'cache_penerima_count' : null,
+        useCache ? CACHE_MAX_AGE_MS : 0
+      );
+
+      const a3 = data[1]?.[0] ? data[1][0].trim() : '';
+      const a4 = data[2]?.[0] ? data[2][0].trim() : '';
+
+      if (countAnakEl) countAnakEl.textContent = a3 || '-';
+      if (countDhuafaEl) countDhuafaEl.textContent = a4 || '-';
+    } catch (err) {
+      console.error('Gagal load jumlah penerima:', err);
+      if (countAnakEl) countAnakEl.textContent = '-';
+      if (countDhuafaEl) countDhuafaEl.textContent = '-';
+    }
+  }
+
+  document.querySelectorAll('.category-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document
+        .querySelectorAll('.category-card')
+        .forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      loadCategory(card.dataset.filter);
+    });
+  });
+
+  // ================================
+  // DONATUR
+  // ================================
+  const DONATUR_URLS = {
+    total: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=359053252&single=true&output=csv',
+    karanganyar: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=233590793&single=true&output=csv',
+    purwosari: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=1607206004&single=true&output=csv',
+    sidoharjo: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=123893709&single=true&output=csv',
+    tuksari: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=1167973996&single=true&output=csv',
+    sumbersari: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=1989737009&single=true&output=csv',
+    kauman: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=208166054&single=true&output=csv',
+    ngadisari: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=1548849395&single=true&output=csv',
+    wonosari: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=947435223&single=true&output=csv',
+    tegalarum: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=469099854&single=true&output=csv',
+    mulyosari: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=473502748&single=true&output=csv',
+    campuran: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=1432451113&single=true&output=csv'
+  };
+  const URL_TOTAL_CARD =
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=229212927&single=true&output=csv';
+
+  const donaturThead = document.getElementById('donatur-thead');
+  const donaturTbody = document.getElementById('donatur-tbody');
+  const donaturStatus = document.getElementById('donatur-status');
+  const donaturTitle = document.getElementById('donatur-table-title');
+  const totalDonasiEl = document.getElementById('total-donasi-value');
+  const homeTotalDonasiEl = document.getElementById('home-total-donasi');
+  let currentDonaturKey = 'total';
+
+  function renderDonaturTable(headerRow, rows, key) {
+    let indicesToShow = [];
+    if (key === 'total') {
+      indicesToShow = headerRow.map((_, idx) => idx);
+    } else if (headerRow.length >= 4) {
+      indicesToShow = [0, 2, 3];
+    } else {
+      let tanggalIndex = headerRow.findIndex(h => {
+        if (!h) return false;
+        const t = h.toString().toLowerCase().trim();
+        return t.startsWith('tanggal') || t.startsWith('tgl');
+      });
+      for (let i = 0; i < headerRow.length; i++) {
+        if (i !== tanggalIndex) indicesToShow.push(i);
+      }
+    }
+
+    donaturThead.innerHTML = '';
+    const trHead = document.createElement('tr');
+    indicesToShow.forEach(idx => {
+      const th = document.createElement('th');
+      th.textContent = headerRow[idx] ?? '';
+      trHead.appendChild(th);
+    });
+    donaturThead.appendChild(trHead);
+
+    donaturTbody.innerHTML = '';
+    const dataRows = rows;
+
+    if (!dataRows.length) {
+      const tr = document.createElement('tr');
+      const td = document.createElement('td');
+      td.colSpan = indicesToShow.length || 1;
+      td.textContent = 'Belum ada data.';
+      tr.appendChild(td);
+      donaturTbody.appendChild(tr);
+      return;
+    }
+
+    dataRows.forEach(row => {
+      const tr = document.createElement('tr');
+      indicesToShow.forEach(idx => {
+        const td = document.createElement('td');
+        td.textContent = row[idx] ?? '';
+        tr.appendChild(td);
+      });
+      donaturTbody.appendChild(tr);
+    });
+  }
+
+  async function loadDonatur(typeKey, { useCache = false } = {}) {
+    const key = typeKey.toLowerCase();
+    currentDonaturKey = key;
+    const url = DONATUR_URLS[key];
+    if (!url) return;
+
+    try {
+      donaturStatus.textContent = 'Memuat data...';
+      const cacheKey =
+        useCache && key === 'total'
+          ? 'cache_donatur_total'
+          : useCache
+          ? 'cache_donatur_' + key
+          : null;
+
+      const { header, data } = await loadCSV(
+        url,
+        cacheKey,
+        cacheKey ? CACHE_MAX_AGE_MS : 0
+      );
+
+      renderDonaturTable(header, data, key);
+      donaturTitle.textContent =
+        key === 'total'
+          ? 'Tabel Total Donasi'
+          : 'Kampung ' + key.charAt(0).toUpperCase() + key.slice(1);
+
+      donaturStatus.textContent = '';
+    } catch (err) {
+      donaturStatus.textContent =
+        'Gagal memuat data donatur. (' + err.message + ')';
+    }
+  }
+
+  async function loadTotalDonasiCard({ useCache = false } = {}) {
+    try {
+      const { data } = await loadCSV(
+        URL_TOTAL_CARD,
+        useCache ? 'cache_total_card' : null,
+        useCache ? CACHE_MAX_AGE_MS : 0
+      );
+      const row = data[4] || [];
+      const value = row[2];
+      const displayValue = value && value !== '' ? value : '-';
+      totalDonasiEl.textContent = displayValue;
+      homeTotalDonasiEl.textContent = displayValue;
+    } catch (err) {
+      totalDonasiEl.textContent = '-';
+      homeTotalDonasiEl.textContent = '-';
+    }
+  }
+
+  const btnTotalDonasi = document.getElementById('btn-total-donasi');
+  const btnDonasiKampung = document.getElementById('btn-donasi-kampung');
+  const donaturTableWrapper = document.getElementById('donatur-table-wrapper');
+  const kampungMenu = document.getElementById('kampung-menu');
+  const summaryCards = document.querySelectorAll('.summary-card');
+
+  function setActiveSummary(card) {
+    summaryCards.forEach(c => c.classList.remove('active'));
+    if (card) card.classList.add('active');
+  }
+
+  if (btnTotalDonasi) {
+    btnTotalDonasi.addEventListener('click', () => {
+      if (kampungMenu) {
+        kampungMenu
+          .querySelectorAll('.kampung-chip')
+          .forEach(c => c.classList.remove('active'));
+      }
+      setActiveSummary(btnTotalDonasi);
+      loadDonatur('total');
+      donaturTableWrapper.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+  if (btnDonasiKampung && kampungMenu) {
+    btnDonasiKampung.addEventListener('click', () => {
+      kampungMenu.classList.toggle('active');
+      setActiveSummary(btnDonasiKampung);
+    });
+    kampungMenu.addEventListener('click', e => {
+      if (!e.target.classList.contains('kampung-chip')) return;
+      kampungMenu
+        .querySelectorAll('.kampung-chip')
+        .forEach(chip => chip.classList.remove('active'));
+      e.target.classList.add('active');
+      setActiveSummary(btnDonasiKampung);
+      loadDonatur(e.target.dataset.kampung);
+      donaturTableWrapper.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
+  // ================================
+  // INITIAL LOAD (PAKAI CACHE)
+  // ================================
+  loadCategory('anak', { useCache: true });
+  loadPenerimaCounts({ useCache: true });
+  loadDonatur('total', { useCache: true });
+  loadTotalDonasiCard({ useCache: true });
+  setActiveSummary(btnTotalDonasi);
+
+  // ================================
+  // AUTO REFRESH 5 DETIK
+  // ================================
+  setInterval(() => {
+    loadCategory(currentPenerimaType);
+    loadPenerimaCounts();
+    loadDonatur(currentDonaturKey);
+    loadTotalDonasiCard();
+  }, 10000);
+</script>
+
+</body>
+</html>
