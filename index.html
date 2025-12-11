@@ -498,15 +498,8 @@
     }
 
     /* ===== PANITIA GALLERY ===== */
-    .panitia-row {
-      display: flex;
-      gap: 10px;
-      margin: 10px 0 14px;
-      align-items: stretch;
-    }
     .panitia-card {
       position: relative;
-      flex: 1 1 calc(33.333% - 6.66px);
       min-width: 0;
       border-radius: 12px;
       overflow: hidden;
@@ -515,7 +508,8 @@
       background: #fff;
       transform-origin: center;
       transition: transform .18s ease, box-shadow .18s ease;
-    }
+      /* If you want equal-width columns, you can set flex-basis here (optional) */
+     }
     .panitia-card img.main {
       display: block;
       width: 100%;
@@ -566,6 +560,8 @@
       display: block;
       z-index: 5;
       border-radius: 10px;
+      text-decoration: none;
+      background: transparent;
     }
 
     /* richer hover: zoom image, elevate card, show role */
@@ -588,7 +584,12 @@
     @media (max-width: 420px) {
       .panitia-card img.main { height: 100px; }
     }
-  </style></head>
+  .panitia-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+</style></head>
 <body><div class="app">
   <!-- HEADER -->
   <header class="app-header">
@@ -643,31 +644,31 @@ Dengan berkonstribusi dan donasi,<br> semoga rejeki panjenengan bertambah melimp
     <!-- Panitia 1 (menggantikan Ketua) -->
     <div class="panitia-card" role="group" aria-label="Panitia 1">
       <img class="main" src="panitia1.jpg" alt="Panitia 1">
-      <a class="wa-link" href="https://wa.me/6285227108799" target="_blank" rel="noopener noreferrer" aria-label="Hubungi Panitia 1 via WhatsApp"></a>
-      <div class="wa-overlay" aria-hidden="true">
-        <img src="wa.png" alt="WA">
-      </div>
-      <span class="panitia-caption">Panitia 1 <span class="panitia-role">(Ketua)</span></span>
+      <a class="wa-link" href="https://wa.me/6285227108799" target="_blank" rel="noopener noreferrer" aria-label="Hubungi Panitia 1 via WhatsApp">
+        <div class="wa-overlay" aria-hidden="true">
+          <img src="wa.png" alt="WA">
+        </div>
+      </a>
     </div>
 
     <!-- Panitia 2 (menggantikan Sekretaris) -->
     <div class="panitia-card" role="group" aria-label="Panitia 2">
       <img class="main" src="panitia2.jpg" alt="Panitia 2">
-      <a class="wa-link" href="https://wa.me/6285227161920" target="_blank" rel="noopener noreferrer" aria-label="Hubungi Panitia 2 via WhatsApp"></a>
-      <div class="wa-overlay" aria-hidden="true">
-        <img src="wa.png" alt="WA">
-      </div>
-      <span class="panitia-caption">Panitia 2 <span class="panitia-role">(Sekretaris)</span></span>
+      <a class="wa-link" href="https://wa.me/6285227161920" target="_blank" rel="noopener noreferrer" aria-label="Hubungi Panitia 2 via WhatsApp">
+        <div class="wa-overlay" aria-hidden="true">
+          <img src="wa.png" alt="WA">
+        </div>
+      </a>
     </div>
 
     <!-- Panitia 3 (menggantikan Bendahara) -->
     <div class="panitia-card" role="group" aria-label="Panitia 3">
       <img class="main" src="panitia3.jpg" alt="Panitia 3">
-      <a class="wa-link" href="https://wa.me/6285227108799" target="_blank" rel="noopener noreferrer" aria-label="Hubungi Panitia 3 via WhatsApp"></a>
-      <div class="wa-overlay" aria-hidden="true">
-        <img src="wa.png" alt="WA">
-      </div>
-      <span class="panitia-caption">Panitia 3 <span class="panitia-role">(Bendahara)</span></span>
+      <a class="wa-link" href="https://wa.me/6285227108799" target="_blank" rel="noopener noreferrer" aria-label="Hubungi Panitia 3 via WhatsApp">
+        <div class="wa-overlay" aria-hidden="true">
+          <img src="wa.png" alt="WA">
+        </div>
+      </a>
     </div>
   </div>
 
@@ -1078,20 +1079,20 @@ Dengan berkonstribusi dan donasi,<br> semoga rejeki panjenengan bertambah melimp
   // ================================
   const DONATUR_URLS = {
     total: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=359053252&single=true&output=csv',
-    karanganyar: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=233590793&single=true&output=csv',
+    karanganyar: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=233590793&single=true&output=csv',
     purwosari: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=1607206004&single=true&output=csv',
-    sidoharjo: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=123893709&single=true&output=csv',
-    tuksari: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=1167973996&single=true&output=csv',
-    sumbersari: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=1989737009&single=true&output=csv',
-    kauman: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=208166054&single=true&output=csv',
-    ngadisari: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=1548849395&single=true&output=csv',
-    wonosari: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=947435223&single=true&output=csv',
-    tegalarum: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=469099854&single=true&output=csv',
-    mulyosari: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=473502748&single=true&output=csv',
-    campuran: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=1432451113&single=true&output=csv'
+    sidoharjo: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=123893709&single=true&output=csv',
+    tuksari: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=1167973996&single=true&output=csv',
+    sumbersari: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=1989737009&single=true&output=csv',
+    kauman: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=208166054&single=true&output=csv',
+    ngadisari: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=1548849395&single=true&output=csv',
+    wonosari: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=947435223&single=true&output=csv',
+    tegalarum: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=469099854&single=true&output=csv',
+    mulyosari: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=473502748&single=true&output=csv',
+    campuran: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=1432451113&single=true&output=csv'
   };
   const URL_TOTAL_CARD =
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHKzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=229212927&single=true&output=csv';
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ54ENp7deJ7sZokW-ivjcPHzBjQ3nJ7iacblcOlbFyvg53zOSJnJPQIPEGbr_SQ/pub?gid=229212927&single=true&output=csv';
 
   const donaturThead = document.getElementById('donatur-thead');
   const donaturTbody = document.getElementById('donatur-tbody');
@@ -1295,4 +1296,4 @@ Dengan berkonstribusi dan donasi,<br> semoga rejeki panjenengan bertambah melimp
     loadTotalDonasiCard({ useCache: false, silent: true });
   }, 30000); // 30.000 ms = 30 detik
 </script></body>
-</html>
+  </html>
