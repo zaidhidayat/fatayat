@@ -1213,9 +1213,9 @@ semoga rejeki panjenengan bertambah melimpah dan berkah</strong>
   // INITIAL LOAD (PAKAI CACHE)
   // ================================
   loadCategory('anak', { useCache: true, showLoading: true });
-  loadPenerimaCounts({ useCache: true, silent: false });
-  loadDonatur('total', { useCache: true, showLoading: true });
-  loadTotalDonasiCard({ useCache: true, silent: false });
+  loadPenerimaCounts({ useCache: false, silent: false });
+  loadDonatur('total', { useCache: false, showLoading: true });
+  loadTotalDonasiCard({ useCache: false, silent: false });
   setActiveSummary(btnTotalDonasi);
 
   // ================================
